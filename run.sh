@@ -18,6 +18,15 @@ run() {
 	gcr.io/tensorflow/tensorflow:latest-gpu-py3
 }
 
+init() {
+	nvidia-docker run -it \
+	-v \
+	/home/webapps/deep-learning/workspace:/notebooks/workspace \
+	--name tensorflow \
+	gcr.io/tensorflow/tensorflow:latest-gpu-py3 \
+	/bin/bash -c "sh /notebooks/workspace/init.sh"
+}
+
 case "$1" in
         run|start|stop)
 		  COMMAND=$1
